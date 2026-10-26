@@ -1,0 +1,4 @@
+method,nclips,calls,cached_accuracy,physical_accuracy,prediction_mismatches,network_mac_per_clip
+threshold,64,1382,0.765625,0.765625,0,246316750.25
+balance,64,1418,0.75,0.75,0,248307851.75
+pirc_share,64,1420,0.734375,0.734375,0,248418468.5

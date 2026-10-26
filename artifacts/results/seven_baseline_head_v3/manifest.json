@@ -1,0 +1,49 @@
+{
+  "checkpoint": "results/refine_adapt_subject_seed42/best.pt",
+  "checkpoint_sha256": "7932eecd3c0192d383db1af8ea08a028ea3d373836c3b7301274db9c67b8e976",
+  "dataset": "DVS128 Gesture",
+  "scenario": "d64_v50",
+  "capacity": 4,
+  "initial_reserve": 2,
+  "allocation_delay": 4,
+  "original_requests_per_clip": 32,
+  "adjacent_transfer_budget_per_bin": 1,
+  "methods": [
+    "fixed_allocation",
+    "instant_gating",
+    "ema_gating",
+    "reserve_threshold",
+    "balanced_sharing",
+    "predictive_reserve",
+    "pirc"
+  ],
+  "seeds": {
+    "validation": [
+      1201,
+      1202,
+      1203,
+      1204,
+      1205
+    ],
+    "official_test": [
+      1301,
+      1302,
+      1303,
+      1304,
+      1305
+    ]
+  },
+  "pirc_config": {
+    "alloc_forecast_gain": 1.0,
+    "burst_gain": 2.0,
+    "fast_gain": 0.0,
+    "lookahead_gain": 2.0,
+    "safe_floor": 0.5,
+    "safe_forecast_gain": 1.0,
+    "safe_gap_gain": 0.5,
+    "transfer_priority_gain": 0.0
+  },
+  "all_methods_share_checkpoint_requests_and_supply": true,
+  "official_test_labels_used_for_tuning": false,
+  "both_splits_previously_inspected": true
+}

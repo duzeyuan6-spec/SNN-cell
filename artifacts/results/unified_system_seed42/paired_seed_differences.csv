@@ -1,0 +1,17 @@
+pirc_minus,metric,mean_diff,pirc_lower_seeds,pirc_higher_seeds,ties
+traditional_share,accuracy,-0.009523809523809523,9,0,1
+traditional_share,rcir,8.680555555556912e-05,3,6,1
+traditional_share,outage_service,-0.003125,9,0,1
+traditional_share,executed_mac_per_clip,-9832.600000005961,6,3,1
+pirc_noreserve,accuracy,0.002777777777777779,3,5,2
+pirc_noreserve,rcir,0.0017485119047619068,0,10,0
+pirc_noreserve,outage_service,0.0013671875,1,6,3
+pirc_noreserve,executed_mac_per_clip,-198056.6571428567,10,0,0
+pirc_nohistory,accuracy,-0.003968253968253977,7,1,2
+pirc_nohistory,rcir,0.0017485119047618957,0,10,0
+pirc_nohistory,outage_service,-0.00185546875,8,0,2
+pirc_nohistory,executed_mac_per_clip,-198056.6571428567,10,0,0
+pirc_nosharing,accuracy,-0.008730158730158744,7,2,1
+pirc_nosharing,rcir,-0.01604662698412699,10,0,0
+pirc_nosharing,outage_service,-0.00693359375,9,0,1
+pirc_nosharing,executed_mac_per_clip,1817626.3428571403,0,10,0

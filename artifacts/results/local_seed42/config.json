@@ -1,0 +1,25 @@
+{
+  "data": "data/prepared",
+  "out": "results/local_seed42",
+  "seed": 42,
+  "warmup": 5,
+  "epochs": 25,
+  "batch_size": 16,
+  "device": "cuda:0",
+  "fit_n": 924,
+  "val_n": 252,
+  "split": {
+    "method": "subject-held-out",
+    "val_subjects": [
+      "11",
+      "17",
+      "18",
+      "19",
+      "23"
+    ]
+  },
+  "dense_mac_per_t": [
+    10617536,
+    3539736
+  ]
+}

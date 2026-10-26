@@ -2,9 +2,11 @@
 
 Research code for DVS128 Gesture classification under a finite, synthetic local compute supply. A three-stage Conv–BN–LIF Backbone always produces Low logits and four regional spike activities. When a regional request is served, an optional High correction is physically executed; otherwise its work is skipped. PIRC combines causal activity-history demand prediction, slow local demand/supply feedback, adaptive donor reserve protection, and bounded sharing between adjacent regions.
 
-The resource tokens, regional stores, and sharing edges are computational abstractions, not a physiological simulation. No dataset, checkpoint, cache, log, or result table is included.
+The resource tokens, regional stores, and sharing edges are computational abstractions, not a physiological simulation. The dataset and derived feature caches are not included. Selected checkpoints, logs, result tables and physical-execution diagnostics are archived in [`artifacts/`](artifacts/README.md).
 
 ## Contents
+
+- `artifacts/`: selected original checkpoints, logs, seven-method results, ablations and overhead diagnostics, with hashes and protocol notes.
 
 - `local_pirc/model.py`, `compact_high.py`: LIF Backbone, original local convolutional High path, and causal accumulated-state Compact High path.
 - `local_pirc/prepare_data.py`, `train.py`: DVS128 event binning and shared Backbone training.

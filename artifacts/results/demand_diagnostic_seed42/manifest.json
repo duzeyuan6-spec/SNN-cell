@@ -1,0 +1,43 @@
+{
+  "scenarios": [
+    "d32_v0",
+    "d32_v50",
+    "d64_v0",
+    "d64_v50",
+    "d128_v0",
+    "d128_v50"
+  ],
+  "fit_seeds": [
+    701,
+    702,
+    703
+  ],
+  "validation_seeds": [
+    711,
+    712,
+    713,
+    714,
+    715,
+    716,
+    717,
+    718,
+    719,
+    720
+  ],
+  "horizons": [
+    16,
+    32
+  ],
+  "reference": {
+    "gain": 2.0,
+    "boost": 4.0,
+    "level": 12.0
+  },
+  "choices": {
+    "reserve": 1.0,
+    "activity": 1.0
+  },
+  "checkpoint": "results/local_seed42/best.pt",
+  "official_test_used": false,
+  "checkpoint_retrained": false
+}

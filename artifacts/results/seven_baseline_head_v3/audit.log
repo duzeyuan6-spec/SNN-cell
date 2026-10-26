@@ -1,0 +1,14 @@
+AUDIT validation fixed_allocation calls 323 mismatch 0
+AUDIT validation instant_gating calls 331 mismatch 0
+AUDIT validation ema_gating calls 333 mismatch 0
+AUDIT validation reserve_threshold calls 425 mismatch 0
+AUDIT validation balanced_sharing calls 424 mismatch 0
+AUDIT validation predictive_reserve calls 432 mismatch 0
+AUDIT validation pirc calls 432 mismatch 0
+AUDIT official_test fixed_allocation calls 276 mismatch 0
+AUDIT official_test instant_gating calls 291 mismatch 0
+AUDIT official_test ema_gating calls 297 mismatch 0
+AUDIT official_test reserve_threshold calls 410 mismatch 0
+AUDIT official_test balanced_sharing calls 411 mismatch 0
+AUDIT official_test predictive_reserve calls 412 mismatch 0
+AUDIT official_test pirc calls 416 mismatch 0

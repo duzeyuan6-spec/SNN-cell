@@ -1,0 +1,4 @@
+method,nclips,calls,cached_accuracy,physical_accuracy,mismatches,gpu_network_ms_per_clip,network_mac_per_clip
+threshold,64,1382,0.765625,0.765625,0,19.018455505371094,246316750.25
+predictive_threshold,64,1382,0.765625,0.765625,0,3.6108749508857727,246316750.25
+predictive_pirc,64,1371,0.796875,0.796875,0,3.4918400049209595,245708358.125

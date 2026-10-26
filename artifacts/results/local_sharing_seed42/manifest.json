@@ -1,0 +1,48 @@
+{
+  "protocol_commit": "fb89925",
+  "checkpoint_sha256": "240d3305ec7876999d660af9051479cdcb4e51e8f6f943d4c712e3100aed811d",
+  "fit_seeds": [
+    701,
+    702,
+    703
+  ],
+  "val_seeds": [
+    711,
+    712,
+    713
+  ],
+  "fit_clips": 128,
+  "val_clips": 64,
+  "capacities": [
+    4.0,
+    12.0
+  ],
+  "scenarios": [
+    "d32_v0",
+    "d32_v50",
+    "d64_v0",
+    "d64_v50",
+    "d128_v0",
+    "d128_v50"
+  ],
+  "transfer_budget_per_bin": 1.0,
+  "neighbors": [
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "test_labels_used": false
+}

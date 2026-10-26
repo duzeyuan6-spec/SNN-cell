@@ -1,0 +1,20 @@
+{
+  "head_lock_sha256": "569ee70037779c7565afb306c7c00a9ba8510dd3c7f100e779c591e95b0c222c",
+  "checkpoint_sha256": "7932eecd3c0192d383db1af8ea08a028ea3d373836c3b7301274db9c67b8e976",
+  "controller_lock_sha256": "d2c6441e71ec45b5c840c37b2af110495c712fc784fd98b95c817370b09c3f38",
+  "nclips": 252,
+  "seeds": [
+    731,
+    732,
+    733,
+    734,
+    735,
+    736,
+    737,
+    738,
+    739,
+    740
+  ],
+  "all_policies_share_weights": true,
+  "official_test_labels_used_for_training_or_selection": false
+}

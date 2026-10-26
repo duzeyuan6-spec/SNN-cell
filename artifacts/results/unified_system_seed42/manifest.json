@@ -1,0 +1,41 @@
+{
+  "protocol_commit": "7f1ac39",
+  "checkpoint_path": "results/local_seed42/best.pt",
+  "checkpoint_sha256": "240d3305ec7876999d660af9051479cdcb4e51e8f6f943d4c712e3100aed811d",
+  "dataset": "DVS128 Gesture",
+  "split": "heldout training subjects",
+  "n_validation_clips": 252,
+  "official_test_labels_used": false,
+  "scenario": "d64_v50",
+  "capacity": 4.0,
+  "initial": 2.0,
+  "allocation_delay": 4,
+  "seeds": [
+    731,
+    732,
+    733,
+    734,
+    735,
+    736,
+    737,
+    738,
+    739,
+    740
+  ],
+  "original_requests_per_clip": 32,
+  "full_predictor_coef": [
+    0.10087951867702051,
+    3.5626167190818925,
+    -9.241046066306108,
+    9.847534769443584,
+    -0.09221622920505042,
+    2.2217492357808815,
+    -2.2884311558926034
+  ],
+  "current_only_predictor_coef": [
+    0.005771479087993209,
+    2.28145116932689,
+    0.6012991837683542
+  ],
+  "result_rows": 60
+}

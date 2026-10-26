@@ -1,0 +1,31 @@
+{
+  "comparison": "mixed-checkpoint end-to-end system, not isolated scheduling",
+  "original_baseline_checkpoint": "results/refine_adapt_subject_seed42/best.pt",
+  "original_baseline_sha256": "7932eecd3c0192d383db1af8ea08a028ea3d373836c3b7301274db9c67b8e976",
+  "original_baseline_summary_sha256": {
+    "validation": "137bdae2601a9ad62bc1c0d388b2c3922fdf85e3a1117c20db466cba579fda78",
+    "official_test": "39a92c078b9322910927f33ebeefb1cbfc26c644d3aaf054a69f2c931ea1d984"
+  },
+  "pirc_compact_checkpoint": "results/compact_high_candidate_v2/best.pt",
+  "pirc_compact_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2",
+  "pirc_raw_requests_supply_and_served_masks_match_original": true,
+  "dataset": "DVS128 Gesture",
+  "scenario": "d64_v50",
+  "supply_seeds": {
+    "validation": [
+      1201,
+      1202,
+      1203,
+      1204,
+      1205
+    ],
+    "official_test": [
+      1301,
+      1302,
+      1303,
+      1304,
+      1305
+    ]
+  },
+  "official_test_labels_used_for_tuning": false
+}
