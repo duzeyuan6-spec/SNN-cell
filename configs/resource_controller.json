@@ -1,0 +1,13 @@
+{
+  "config": {
+    "alloc_forecast_gain": 1.0,
+    "burst_gain": 2.0,
+    "fast_gain": 0.0,
+    "lookahead_gain": 2.0,
+    "safe_floor": 0.5,
+    "safe_forecast_gain": 1.0,
+    "safe_gap_gain": 0.5,
+    "transfer_priority_gain": 0.0
+  },
+  "note": "Frozen controller coefficients from the original exploratory protocol; historical fit selection had a class-ordered-subset limitation."
+}

@@ -1,0 +1,7 @@
+torch==2.8.0
+torchvision==0.23.0
+spikingjelly==0.0.0.0.14
+numpy==2.4.6
+scipy==1.17.1
+h5py==3.16.0
+pytest==9.1.1
