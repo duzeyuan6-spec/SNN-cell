@@ -1,0 +1,8 @@
+{
+  "params": {
+    "protect": 0.0,
+    "risk_gain": 0.0,
+    "slow_gain": 0.5
+  },
+  "fit_objective": 0.616402840071694
+}

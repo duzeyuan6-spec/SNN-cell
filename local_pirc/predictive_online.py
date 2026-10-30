@@ -154,3 +154,82 @@ def accuracy(cache, mask):
     logits = low + np.einsum('ntg,ntgc->nc', mask, corr, optimize=True) / T
     y = cache['labels'][:n]
     return float(np.mean(np.argmax(logits, axis=1) == y))
+
+
+def calibration(rates, coef, root):
+    inp_pred = []
+    for seed in FIT_SEEDS:
+        inp = stream_inputs(rates[:FIT_POLICY_CLIPS], 'd64_v50', seed)
+        inp_pred.append((inp, predict(inp, coef)))
+    rows = []
+    def evaluate(method, params):
+        vals = [simulate_online(inp, pred, method, params, 4.)[1] for inp, pred in inp_pred]
+        mean_obj = float(np.mean([objective(v) for v in vals]))
+        rows.append({'method': method, 'params': json.dumps(params, sort_keys=True),
+                     'objective': mean_obj, 'rcir': float(np.mean([v['rcir'] for v in vals])),
+                     'outage_service': float(np.mean([v['outage_service'] for v in vals])),
+                     'spill_fraction': float(np.mean([v['spill_fraction'] for v in vals]))})
+        return mean_obj
+    threshold_candidates = [(evaluate('threshold', {'gain': g, 'boost': b}), g, b)
+        for g, b in itertools.product((0., 2., 4., 8.), (2., 4., 8.))]
+    _, gain, boost = min(threshold_candidates)
+    chosen = {'threshold': {'gain': gain, 'boost': boost}}
+    pred_candidates = []
+    for k in (0., 1., 2., 4., 8.):
+        params = {'gain': gain, 'boost': boost, 'forecast_gain': k}
+        pred_candidates.append((evaluate('predictive_threshold', params), k))
+    _, kbest = min(pred_candidates)
+    chosen['predictive_threshold'] = {'gain': gain, 'boost': boost, 'forecast_gain': kbest}
+    pirc_candidates = []
+    for k, rho, slow in itertools.product((0., 1., 2., 4., 8.), (.5, .9, .98), (1., 2., 4.)):
+        params = {'gain': gain, 'boost': boost, 'forecast_gain': k,
+                  'rho': rho, 'slow_gain': slow}
+        pirc_candidates.append((evaluate('predictive_pirc', params), k, rho, slow))
+    _, k, rho, slow = min(pirc_candidates)
+    chosen['predictive_pirc'] = {'gain': gain, 'boost': boost,
+                                  'forecast_gain': k, 'rho': rho, 'slow_gain': slow}
+    save_csv(root / 'fit_candidates.csv', rows)
+    (root / 'chosen.json').write_text(json.dumps(chosen, indent=2))
+    return chosen
+
+
+def main():
+    root = Path('results/predictive_online_seed42'); root.mkdir(parents=True, exist_ok=True)
+    assert not (root / 'validation_results.csv').exists(), 'Refuse to overwrite validation results'
+    rates = np.load('results/longrun_seed42/fit_rates.npy')
+    cache = np.load('results/local_seed42/controllers/validation_cache.npz')
+    valrates = cache['rate']
+    assert rates.shape == (924, T, G) and valrates.shape == (252, T, G)
+    checkpoint = Path('results/local_seed42/best.pt')
+    digest = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+    coef = fit_predictor(rates)
+    (root / 'predictor.json').write_text(json.dumps({'horizon': H, 'coef': coef.tolist(),
+        'fit_nclips': len(rates), 'fit_seeds': FIT_SEEDS}, indent=2))
+    print('PREDICTOR', coef.tolist(), flush=True)
+    chosen = calibration(rates, coef, root)
+    print('CHOSEN', chosen, flush=True)
+    rows = []; masks = {}
+    for cap in CAPS:
+        for scenario in SCENARIOS:
+            for seed in VAL_SEEDS:
+                inp = stream_inputs(valrates[:VAL_CLIPS], scenario, seed)
+                pred = predict(inp, coef)
+                for method, params in chosen.items():
+                    mask, st, _ = simulate_online(inp, pred, method, params, cap)
+                    row = {'capacity': cap, 'scenario': scenario, 'seed': seed,
+                           'method': method, 'accuracy': accuracy(cache, mask), **st}
+                    rows.append(row)
+                    if cap == 4. and scenario == 'd64_v50' and seed == 711:
+                        masks[method] = mask
+            print('VALIDATED', cap, scenario, flush=True)
+    save_csv(root / 'validation_results.csv', rows)
+    np.savez_compressed(root / 'primary_masks.npz', **masks)
+    (root / 'manifest.json').write_text(json.dumps({'checkpoint_sha256': digest,
+        'fit_seeds': FIT_SEEDS, 'validation_seeds': VAL_SEEDS,
+        'validation_clips': VAL_CLIPS, 'capacities': CAPS, 'scenarios': SCENARIOS,
+        'official_test_used': False, 'future_information_at_policy_time': False,
+        'protocol_commit': '01406da'}, indent=2))
+    print('SAVED', root, flush=True)
+
+if __name__ == '__main__':
+    main()

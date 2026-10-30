@@ -1,0 +1,9 @@
+horizon,metric,full_minus_current,ci95_lo,ci95_hi,note
+16,auroc,0.003751165489836611,0.003481450031307749,0.0040165149663577955,exploratory_posthoc_attribution; bootstrap unit supply seed
+16,auprc,0.018206726518546212,0.017247090669427784,0.019249513371389415,exploratory_posthoc_attribution; bootstrap unit supply seed
+16,log_loss,-0.0028426036668600533,-0.003042789642545178,-0.0026594364516397202,exploratory_posthoc_attribution; bootstrap unit supply seed
+16,brier,-0.0014438012050481683,-0.0015440771989895436,-0.0013478844459788467,exploratory_posthoc_attribution; bootstrap unit supply seed
+32,auroc,0.00044009880544759375,0.00033947308680487727,0.0005427340622521725,exploratory_posthoc_attribution; bootstrap unit supply seed
+32,auprc,0.003220318151479281,0.0029362280984092724,0.0035354308980923886,exploratory_posthoc_attribution; bootstrap unit supply seed
+32,log_loss,-0.0004570647956103781,-0.0005310886175199361,-0.00037751864625439014,exploratory_posthoc_attribution; bootstrap unit supply seed
+32,brier,-0.00010220971053681027,-0.0001247262287877878,-7.79164660624635e-05,exploratory_posthoc_attribution; bootstrap unit supply seed

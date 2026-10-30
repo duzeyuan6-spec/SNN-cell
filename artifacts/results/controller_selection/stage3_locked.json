@@ -1,0 +1,36 @@
+{
+  "selected_from": "fit_subject_first_256_seeds_701_703",
+  "protocol_commit": "f9bf45d",
+  "candidate_count": 27,
+  "n_fit_feasible": 17,
+  "config": {
+    "alloc_forecast_gain": 1.0,
+    "burst_gain": 2.0,
+    "fast_gain": 0.0,
+    "lookahead_gain": 2.0,
+    "safe_floor": 0.5,
+    "safe_forecast_gain": 1.0,
+    "safe_gap_gain": 0.5,
+    "transfer_priority_gain": 0.0
+  },
+  "checkpoint_sha256": "240d3305ec7876999d660af9051479cdcb4e51e8f6f943d4c712e3100aed811d",
+  "predictor_sha256": "9f8928a1ea16c6d50c151b393465bddc6f11ce1e0e48141a15b640b90d449ee2",
+  "validation_seeds": [
+    731,
+    732,
+    733,
+    734,
+    735,
+    736,
+    737,
+    738,
+    739,
+    740
+  ],
+  "fit_holdout_seeds": [
+    704,
+    705,
+    706
+  ],
+  "test_labels_used": false
+}

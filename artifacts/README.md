@@ -1,9 +1,10 @@
 # Archived experimental artifacts
 
-The original archived experiments were copied from the source project at `ef24896`. The two recent online-scheduler adapters and their outputs were copied from source experiment commit `bbb99c4`. The original experiment directories and names are preserved below `artifacts/results/`. `SHA256SUMS` records the hash of every included file. This is a selected archive of completed results relevant to the CSCWD system comparison, not a dataset or a new experimental run.
+The original archived experiments were copied from the source project at `ef24896`. The two recent online-scheduler adapters and their outputs were copied from source experiment commit `bbb99c4`. The original experiment directories and names are preserved below `artifacts/results/`; newly copied CSVs were normalized to LF line endings with unchanged cells. `SHA256SUMS` records the hash of every included file. The [reproduction index](REPRODUCIBILITY.md) maps the archived experiments to their parameter grids, selected configurations, metrics and limits. This is a selected archive of completed results relevant to the CSCWD system comparison, not a dataset or a new experimental run.
 
 | Directory | Contents | Data / interpretation |
 | --- | --- | --- |
+| `controller_selection/` | Fit-only Stage 1–3 PIRC parameter grids, failed candidate sets, selected Stage-3 configuration and lock | Selection used a class-ordered first-256 fit subset with only four classes; not an independent generalization estimate. |
 | `local_seed42/` | Shared DVS128 Gesture Backbone checkpoint, fit/validation split, training log and initial hardware audit | Backbone used by the later High-head work; initial audits are a separate experiment. |
 | `refine_adapt_subject_seed42/` | Original High-head checkpoint, configuration, training log, validation and official-test summaries and physical audits | The seven scheduling policies use this same High checkpoint. |
 | `compact_high_candidate_v2/` | Compact High-head checkpoint, training history and log | Used only by the later Compact High PIRC system comparison. |
@@ -11,9 +12,9 @@ The original archived experiments were copied from the source project at `ef2489
 | `recent_online_schedulers_2025/` | Two 2025 literature-inspired online resource-scheduler adapters: validation calibration grid, per-seed validation and official-test rows, summaries, manifest, GPU audit and run log | Same Compact High checkpoint, original requests and supply seeds for both adapters; **PIRC was not rerun**. See [`RECENT_ONLINE_SCHEDULER_REPORT.md`](RECENT_ONLINE_SCHEDULER_REPORT.md) for adaptation details and limitations. |
 | `pirc_only_compact_high/` | Compact High mixed-model comparison, raw PIRC rows, timing diagnostic and logs | PIRC uses the Compact High checkpoint; the other six rows retain the original High checkpoint. This is an end-to-end mixed-model comparison, **not** an isolated scheduler comparison. |
 | `unified_system_seed42/` | Main system table, mechanism ablation table, raw and paired results, physical audit | Earlier held-out-training-subject validation experiment using `local_seed42/best.pt`. It is a different model/protocol from the seven-method table. |
-| `demand_diagnostic_seed42/` | 16/32-step risk prediction AUPRC/AUROC tables and model coefficients | Validation-only mechanism diagnostic; compare reserve-only and activity-history variants within the same scenario. |
-| `local_sharing_seed42/` | RCIR, outage service, CRSR and executed-MAC sharing diagnostics | Earlier exploratory scenarios; not matched to the final seven-method table. |
-| `predictive_online_seed42/` | Predictive resource control diagnostic, predictor, paired and overhead tables | Earlier exploratory scenarios; not matched to the final seven-method table. |
+| `demand_diagnostic_seed42/` | 16/32-step risk prediction AUPRC/AUROC tables, fitted coefficients, policy-selection grid and per-scenario/per-seed deployment results | Validation-only mechanism diagnostic; compare reserve-only and activity-history variants within the same scenario. |
+| `local_sharing_seed42/` | RCIR, outage service, CRSR and executed-MAC sharing diagnostics; fit grid, selected parameters, per-seed raw rows and group details | Earlier exploratory scenarios; not matched to the final seven-method table. |
+| `predictive_online_seed42/` | Predictive resource control diagnostic, fit grid, selected parameters, predictor, per-seed raw rows, paired and overhead tables | Earlier exploratory scenarios; not matched to the final seven-method table. |
 
 Checkpoint SHA-256:
 

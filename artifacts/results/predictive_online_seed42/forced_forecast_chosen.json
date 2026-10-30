@@ -1,0 +1,14 @@
+{
+  "predictive_threshold": {
+    "boost": 2.0,
+    "forecast_gain": 2.0,
+    "gain": 4.0
+  },
+  "predictive_pirc": {
+    "boost": 2.0,
+    "forecast_gain": 1.0,
+    "gain": 4.0,
+    "rho": 0.5,
+    "slow_gain": 1.0
+  }
+}

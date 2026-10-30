@@ -1,0 +1,47 @@
+{
+  "protocol": "REFINE_ADAPT_PROTOCOL_V3.md",
+  "protocol_commit": "1266b55",
+  "original_checkpoint_sha256": "240d3305ec7876999d660af9051479cdcb4e51e8f6f943d4c712e3100aed811d",
+  "adapted_checkpoint_sha256": "7932eecd3c0192d383db1af8ea08a028ea3d373836c3b7301274db9c67b8e976",
+  "controller_lock_sha256": "d2c6441e71ec45b5c840c37b2af110495c712fc784fd98b95c817370b09c3f38",
+  "only_changed_state_keys": [
+    "refine.head.weight",
+    "refine.head.bias"
+  ],
+  "selected_epoch": 2,
+  "heldout_subjects": [
+    "02",
+    "07",
+    "13",
+    "14"
+  ],
+  "selection_ce_original": 0.3649310800764296,
+  "selection_ce_adapted": 0.32607397105958724,
+  "selection_accuracy_original": 0.8558139602343241,
+  "selection_accuracy_adapted": 0.8770025769869486,
+  "validation_seeds": [
+    731,
+    732,
+    733,
+    734,
+    735,
+    736,
+    737,
+    738,
+    739,
+    740
+  ],
+  "official_test_seeds": [
+    801,
+    802,
+    803,
+    804,
+    805,
+    806,
+    807,
+    808,
+    809,
+    810
+  ],
+  "no_validation_or_test_labels_used_for_adaptation": true
+}

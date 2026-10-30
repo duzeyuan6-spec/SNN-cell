@@ -2,15 +2,15 @@
 
 Research code for DVS128 Gesture classification under a finite, synthetic local compute supply. A three-stage Conv–BN–LIF Backbone always produces Low logits and four regional spike activities. When a regional request is served, an optional High correction is physically executed; otherwise its work is skipped. PIRC combines causal activity-history demand prediction, slow local demand/supply feedback, adaptive donor reserve protection, and bounded sharing between adjacent regions.
 
-The resource tokens, regional stores, and sharing edges are computational abstractions, not a physiological simulation. The dataset and derived feature caches are not included. Selected checkpoints, logs, result tables and physical-execution diagnostics are archived in [`artifacts/`](artifacts/README.md).
+The resource tokens, regional stores, and sharing edges are computational abstractions, not a physiological simulation. The dataset and derived feature caches are not included. Selected checkpoints, logs, result tables and physical-execution diagnostics are archived in [`artifacts/`](artifacts/README.md). The [reproduction index](artifacts/REPRODUCIBILITY.md) maps every archived experiment to its parameter grid, selected configuration, raw metrics and limitations.
 
 ## Contents
 
-- `artifacts/`: selected original checkpoints, logs, seven-method results, ablations and overhead diagnostics, with hashes and protocol notes.
+- `artifacts/`: selected checkpoints, logs, seven-method results, mechanism diagnostics, ablations and overhead diagnostics, with hashes, protocol notes and a [reproduction index](artifacts/REPRODUCIBILITY.md).
 
 - `local_pirc/model.py`, `compact_high.py`: LIF Backbone, original local convolutional High path, and causal accumulated-state Compact High path.
 - `local_pirc/prepare_data.py`, `train.py`: DVS128 event binning and shared Backbone training.
-- `local_pirc/outage_sweep.py`, `predictive_online.py`: matched original requests, synthetic supply, and causal activity-history predictor.
+- `local_pirc/outage_sweep.py`, `predictive_online.py`, `demand_diagnostic.py`: matched original requests, synthetic supply, causal activity-history predictor and risk diagnostic.
 - `local_pirc/local_sharing.py`, `unified_system.py`: finite reserves, safe adjacent transfers, delayed allocation, PIRC and mechanism ablations.
 - `local_pirc/seven_baselines.py`: fixed allocation, instant gating, EMA gating, reserve threshold, balanced sharing, predictive reserve, and PIRC under one original High checkpoint.
 - `local_pirc/refine_head_features.py`, `refine_head_adapt_v3.py`, `compact_high_features.py`, `compact_high_train.py`: frozen-Backbone High-head training.

@@ -1,0 +1,36 @@
+{
+  "fit_only": true,
+  "n_fit_clips": 256,
+  "seeds": [
+    701,
+    702,
+    703
+  ],
+  "baseline": {
+    "accuracy": 0.8125,
+    "rcir": 0.3048909505208333,
+    "outage_service": 0.0859375,
+    "overflow_rate": 0.13103810754071266,
+    "high_calls_per_clip": 22.243489583333332,
+    "safe_mean_per_region": 1.0,
+    "preoutage_reserve_per_region": 2.898569384154296
+  },
+  "candidate_count": 27,
+  "n_feasible": 17,
+  "selection": {
+    "params": "{\"alloc_forecast_gain\": 1.0, \"burst_gain\": 2.0, \"fast_gain\": 0.0, \"lookahead_gain\": 2.0, \"safe_floor\": 0.5, \"safe_forecast_gain\": 1.0, \"safe_gap_gain\": 0.5, \"transfer_priority_gain\": 0.0}",
+    "accuracy": 0.8216145833333334,
+    "rcir": 0.2972005208333333,
+    "outage_service": 0.09114583333333333,
+    "overflow_rate": 0.12151706088723412,
+    "high_calls_per_clip": 22.489583333333332,
+    "safe_mean_per_region": 0.9971943749917934,
+    "preoutage_reserve_per_region": 3.0276935416634854,
+    "feasible": true,
+    "accuracy_gain_rel": 0.011217948717948763,
+    "rcir_gain_rel": 0.025223541972507674,
+    "outage_gain_rel": 0.06060606060606055,
+    "minimum_gain_rel": 0.011217948717948763,
+    "mean_gain_rel": 0.03234918376550566
+  }
+}

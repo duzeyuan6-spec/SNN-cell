@@ -1,0 +1,32 @@
+{
+  "dataset": "DVS128 Gesture",
+  "training_type": "frozen backbone, train Compact High MLP only",
+  "backbone_checkpoint": "artifacts/results/refine_adapt_subject_seed42/best.pt",
+  "checkpoint_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2",
+  "selected_epoch": 43,
+  "selected_validation_ce": 0.8071895837783813,
+  "mask_methods": [
+    "fixed_allocation",
+    "balanced_sharing",
+    "predictive_reserve",
+    "pirc"
+  ],
+  "fit_supply_seeds": [
+    701,
+    702
+  ],
+  "validation_supply_seeds": [
+    1201,
+    1202
+  ],
+  "optimizer": "AdamW",
+  "learning_rate": 0.001,
+  "weight_decay": 0.001,
+  "batch_size": 64,
+  "max_epochs": 100,
+  "early_stopping_patience": 15,
+  "selection": "mean full-recording cross entropy across 4 feasible mask methods and 2 validation supply seeds",
+  "scenario": "d64_v50",
+  "random_seed": 42,
+  "source": "Values from local_pirc/compact_high_train.py and archived best.pt; no new training run"
+}

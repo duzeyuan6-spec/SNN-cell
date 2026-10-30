@@ -1,0 +1,36 @@
+{
+  "fit_only": true,
+  "n_fit_clips": 256,
+  "seeds": [
+    701,
+    702,
+    703
+  ],
+  "baseline": {
+    "accuracy": 0.8125,
+    "rcir": 0.3048909505208333,
+    "outage_service": 0.0859375,
+    "overflow_rate": 0.13103810754071266,
+    "high_calls_per_clip": 22.243489583333332,
+    "safe_mean_per_region": 1.0,
+    "preoutage_reserve_per_region": 2.898569384154296
+  },
+  "candidate_count": 48,
+  "n_feasible": 0,
+  "selection": {
+    "params": "{\"alloc_forecast_gain\": 0.0, \"burst_gain\": 2.0, \"safe_floor\": 0.75, \"safe_forecast_gain\": 1.0, \"safe_gap_gain\": 0.5, \"transfer_priority_gain\": 0.0}",
+    "accuracy": 0.8151041666666666,
+    "rcir": 0.3050537109375,
+    "outage_service": 0.0859375,
+    "overflow_rate": 0.13126348007152022,
+    "high_calls_per_clip": 22.23828125,
+    "safe_mean_per_region": 1.2352177252046772,
+    "preoutage_reserve_per_region": 2.9054146504654157,
+    "feasible": false,
+    "accuracy_gain_rel": 0.0032051282051281595,
+    "rcir_gain_rel": -0.0005338315761377893,
+    "outage_gain_rel": 0.0,
+    "minimum_gain_rel": -0.0005338315761377893,
+    "mean_gain_rel": 0.0008904322096634568
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "params": {
+    "boost": 2.0,
+    "forecast_gain": 0.0,
+    "gain": 4.0,
+    "rho": 0.98,
+    "slow_gain": 1.0
+  },
+  "fit_objective": 0.6312342137545603
+}

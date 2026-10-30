@@ -11,6 +11,9 @@ from .model import T, dense_mac_per_t
 from .outage_sweep import DELAY, stream_inputs
 from .predictive_online import accuracy, features, predict, target
 
+ROOT = Path('results/unified_system_seed42')
+PROTOCOL = '7f1ac39'
+SEEDS = tuple(range(731, 741))
 SCENARIO = 'd64_v50'
 CAP = 4.
 INITIAL = 2.
@@ -221,3 +224,93 @@ def simulate(inp, forecast, policy, config=None, utility_priority=None, *, share
         'supply_hash': hashlib.sha256(supply.tobytes()).hexdigest(),
     }
     return mask, stats
+
+
+def summarize(rows):
+    ans = []
+    for policy in ('fixed_low',) + POLICIES:
+        sub = [r for r in rows if r['policy'] == policy]
+        out = {'policy': policy, 'split': 'heldout_train_subject_validation',
+               'scenario': SCENARIO, 'capacity': CAP,
+               'n_clips': 252, 'n_supply_seeds': len(SEEDS)}
+        for key in ('accuracy', 'high_calls_per_clip', 'high_call_rate', 'rcir',
+                    'outage_service', 'executed_mac_per_clip', 'global_crsr',
+                    'adjacent_crsr', 'overflow_rate', 'transferred_tokens'):
+            vals = [float(r[key]) for r in sub if r[key] != '']
+            out[key] = float(np.mean(vals)) if vals else ''
+        ans.append(out)
+    return ans
+
+
+def save_csv(path, rows):
+    assert rows
+    with path.open('w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator='\n')
+        w.writeheader()
+        w.writerows(rows)
+
+
+def main():
+    ROOT.mkdir(parents=True, exist_ok=True)
+    assert not (ROOT / 'raw.csv').exists(), 'Refuse overwrite'
+    fit = np.load('results/longrun_seed42/fit_rates.npy')
+    cache = np.load('results/local_seed42/controllers/validation_cache.npz')
+    assert fit.shape == (924, T, G)
+    assert cache['rate'].shape == (252, T, G)
+    ck = Path('results/local_seed42/best.pt')
+    ck_sha = hashlib.sha256(ck.read_bytes()).hexdigest()
+    assert ck_sha == '240d3305ec7876999d660af9051479cdcb4e51e8f6f943d4c712e3100aed811d'
+    full_coef = np.asarray(json.loads(
+        Path('results/predictive_online_seed42/predictor.json').read_text())['coef'])
+    assert full_coef.shape == (7,)
+    cur_coef = current_only_coef(fit)
+    rows = []
+    base, _ = dense_mac_per_t()
+    low_accuracy = float(np.mean(cache['low'].argmax(1) == cache['labels']))
+    masks = {}
+    for seed in SEEDS:
+        inp = stream_inputs(cache['rate'], SCENARIO, seed)
+        forecast_full = predict(inp, full_coef)
+        forecast_cur = current_only_predict(inp, cur_coef)
+        req_hash = hashlib.sha256(inp['requested'].tobytes()).hexdigest()
+        supply_hash = hashlib.sha256(inp['supply'].tobytes()).hexdigest()
+        rows.append({'policy': 'fixed_low', 'seed': seed,
+                     'accuracy': low_accuracy, 'high_calls_per_clip': 0.,
+                     'high_call_rate': 0., 'rcir': '', 'outage_service': '',
+                     'executed_mac_per_clip': T * base,
+                     'global_crsr': '', 'adjacent_crsr': '',
+                     'overflow_rate': '', 'transferred_tokens': 0.,
+                     'requests': 0, 'calls': 0, 'outage_requests': 0,
+                     'outage_calls': 0, 'total_supply': inp['supply'].sum(),
+                     'original_requests_hash': req_hash, 'supply_hash': supply_hash})
+        for policy in POLICIES:
+            forecast = forecast_cur if policy == 'pirc_nohistory' else forecast_full
+            mask, stat = simulate(inp, forecast, policy)
+            assert stat['requests'] == 32 * len(cache['labels'])
+            assert stat['original_requests_hash'] == req_hash
+            assert stat['supply_hash'] == supply_hash
+            rows.append({'policy': policy, 'seed': seed,
+                         'accuracy': accuracy(cache, mask), **stat})
+            if seed == SEEDS[0]:
+                masks[policy] = mask
+        print('SEED', seed, 'finished', flush=True)
+    save_csv(ROOT / 'raw.csv', rows)
+    save_csv(ROOT / 'main_results.csv', summarize(rows))
+    np.savez_compressed(ROOT / 'first_seed_masks.npz', **masks)
+    (ROOT / 'manifest.json').write_text(json.dumps({
+        'protocol_commit': PROTOCOL,
+        'checkpoint_path': str(ck), 'checkpoint_sha256': ck_sha,
+        'dataset': 'DVS128 Gesture', 'split': 'heldout training subjects',
+        'n_validation_clips': 252, 'official_test_labels_used': False,
+        'scenario': SCENARIO, 'capacity': CAP, 'initial': INITIAL,
+        'allocation_delay': DELAY, 'seeds': SEEDS,
+        'original_requests_per_clip': 32,
+        'full_predictor_coef': full_coef.tolist(),
+        'current_only_predictor_coef': cur_coef.tolist(),
+        'result_rows': len(rows),
+    }, indent=2))
+    print('SAVED', ROOT, flush=True)
+
+
+if __name__ == '__main__':
+    main()
