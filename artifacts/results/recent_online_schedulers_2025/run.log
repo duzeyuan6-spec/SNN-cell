@@ -1,0 +1,13 @@
+CHOSEN {'dsm_2025_adapted': 0.0, 'ecss_2025_adapted': 0.5}
+EVALUATED validation 1201
+EVALUATED validation 1202
+EVALUATED validation 1203
+EVALUATED validation 1204
+EVALUATED validation 1205
+SUMMARY validation [{"split": "validation", "method": "dsm_2025_adapted", "nclips": 252, "n_supply_seeds": 5, "checkpoint_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2", "parameter": 0.0, "paper": "https://arxiv.org/abs/2510.27317", "accuracy": 0.7333333333333334, "rcir": 0.29538690476190477, "outage_service": 0.076171875, "executed_mac_per_clip": 171479472.76190475, "high_calls_per_clip": 22.54761904761905, "spill_tokens": 776.5572155505519, "transferred_tokens": 734.9947247037978}, {"split": "validation", "method": "ecss_2025_adapted", "nclips": 252, "n_supply_seeds": 5, "checkpoint_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2", "parameter": 0.5, "paper": "https://link.springer.com/article/10.1186/s13677-025-00780-7", "accuracy": 0.723015873015873, "rcir": 0.2925843253968254, "outage_service": 0.0763671875, "executed_mac_per_clip": 171485832.3301587, "high_calls_per_clip": 22.637301587301586, "spill_tokens": 754.4665463863226, "transferred_tokens": 629.9371402345087}]
+EVALUATED official_test 1301
+EVALUATED official_test 1302
+EVALUATED official_test 1303
+EVALUATED official_test 1304
+EVALUATED official_test 1305
+SUMMARY official_test [{"split": "official_test", "method": "dsm_2025_adapted", "nclips": 288, "n_supply_seeds": 5, "checkpoint_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2", "parameter": 0.0, "paper": "https://arxiv.org/abs/2510.27317", "accuracy": 0.7951388888888888, "rcir": 0.2933376736111111, "outage_service": 0.08246527777777778, "executed_mac_per_clip": 171484122.84444445, "high_calls_per_clip": 22.613194444444442, "spill_tokens": 866.7912156427232, "transferred_tokens": 801.7858606641943}, {"split": "official_test", "method": "ecss_2025_adapted", "nclips": 288, "n_supply_seeds": 5, "checkpoint_sha256": "717df1cdc60c13e93a572d22f542df7f7df25ecb3637b6798e85872fc9c50de2", "parameter": 0.5, "paper": "https://link.springer.com/article/10.1186/s13677-025-00780-7", "accuracy": 0.7895833333333332, "rcir": 0.2912760416666666, "outage_service": 0.08333333333333334, "executed_mac_per_clip": 171488801.06666666, "high_calls_per_clip": 22.67916666666667, "spill_tokens": 848.0387637088992, "transferred_tokens": 664.0861168347224}]

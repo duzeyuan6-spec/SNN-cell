@@ -14,6 +14,7 @@ The resource tokens, regional stores, and sharing edges are computational abstra
 - `local_pirc/local_sharing.py`, `unified_system.py`: finite reserves, safe adjacent transfers, delayed allocation, PIRC and mechanism ablations.
 - `local_pirc/seven_baselines.py`: fixed allocation, instant gating, EMA gating, reserve threshold, balanced sharing, predictive reserve, and PIRC under one original High checkpoint.
 - `local_pirc/refine_head_features.py`, `refine_head_adapt_v3.py`, `compact_high_features.py`, `compact_high_train.py`: frozen-Backbone High-head training.
+- `local_pirc/recent_online_scheduler.py`, `recent_online_eval.py`, `recent_online_physical_audit.py`: two 2025 paper-inspired online resource scheduler adapters, validation calibration, matched Compact High evaluation and physical audit. See [`artifacts/RECENT_ONLINE_SCHEDULER_REPORT.md`](artifacts/RECENT_ONLINE_SCHEDULER_REPORT.md).
 - `local_pirc/pirc_only_compact_eval.py`, `scripts/release_ablations.py`: mixed-head system comparison and matched-head ablations.
 - `local_pirc/final_eval.py`: physical sparse High execution and GPU timing helper.
 - `configs/resource_controller.json`: frozen controller coefficients used for the published exploratory comparison.
@@ -70,6 +71,20 @@ export PIRC_DEVICE=cuda:0
 ```
 
 Key outputs are `results/seven_baseline_head_v3/{validation,official_test}_summary.csv`, `results/release_ablations/{validation,official_test}.csv`, and `results/pirc_only_compact_high/{validation,official_test}_mixed_model_table.csv`. These scripts refuse to overwrite their key outputs. `pirc_only_compact_eval` also performs a small physical GPU sparse-execution audit and writes its timing; it requires CUDA.
+
+## Two recent online resource-scheduler baselines
+
+The DSM 2025 and ECSS 2025 **adaptations** use the same frozen Compact High checkpoint and supply/request protocol. PIRC is not rerun in this two-method supplement. The original papers' DVFS, DAG migration, serverless functions and external helper nodes are outside this SNN's action space, so the results must not be cited as faithful reproductions of the full paper algorithms. The exact parameter grids, selected values, causal decision rules and per-seed outcomes are in [`artifacts/RECENT_ONLINE_SCHEDULER_REPORT.md`](artifacts/RECENT_ONLINE_SCHEDULER_REPORT.md) and `artifacts/results/recent_online_schedulers_2025/`.
+
+After preparing the DVS128 Gesture features above and the Compact High checkpoint, run:
+
+```bash
+.venv/bin/python -m pytest -q tests/test_recent_online_scheduler.py
+.venv/bin/python -m local_pirc.recent_online_eval
+.venv/bin/python -m local_pirc.recent_online_physical_audit cuda:0
+```
+
+The archived evaluation uses validation resource seeds 1201–1202 to select one parameter per adapter and scores both methods on five validation and five official-test supply seeds. It needs `results/predictive_online_seed42/predictor.json` from `scripts.fit_predictor` and `results/compact_high_candidate_v2/{validation,official_test}_features.npz` from the feature-generation commands above. Copy the archived Compact High checkpoint to its corresponding `results/` path if you are reproducing the published checkpoint rather than training a new one. The scripts refuse to overwrite saved summaries.
 
 ## Metrics and interpretation
 

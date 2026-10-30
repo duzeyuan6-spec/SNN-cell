@@ -1,0 +1,2 @@
+dsm_2025_adapted max_logit_diff 3.814697265625e-06 mismatch 0 first_pass_gpu_ms_per_clip 59.03462219238281
+ecss_2025_adapted max_logit_diff 3.814697265625e-06 mismatch 0 first_pass_gpu_ms_per_clip 1.1923840045928955
